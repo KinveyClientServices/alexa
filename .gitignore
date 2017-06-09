@@ -1,0 +1,35 @@
+# Mac Development
+.DS_Store
+
+.idea
+lib-cov
+*.iml
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+connparams.txt
+
+.notes
+
+pids
+logs
+results
+
+npm-debug.log
+
+.kinvey*
+node_modules
+
+
+# Server install zip file
+*.zip
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
