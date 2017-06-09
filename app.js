@@ -24,28 +24,37 @@ app.post("/skilltest", function(req,res){
       username = user.id
     }
 
-    // step 2: act on the intent
-    // if (req.body.request.intent.name === "GetBooks" ) {
-
-    var outputSpeech = "Hi there "+username+", the list of books is ";
-    Kinvey.DataStore.collection('books',Kinvey.DataStoreType.Network).find().subscribe(function onNext(books) {
-      console.log("FOUND BOOKS:");
-      books.forEach(function (book) {
-        console.log("- "+book.title);
-        outputSpeech += book.title+", ";
-      });
-      console.log("END OF LIST");
-      var response = { version: "1.0",
-                       response:{
-                         outputSpeech: {
-                           type: "PlainText",
-                         }
+    // output json structure
+    var response = { version: "1.0",
+                     response:{
+                       outputSpeech: {
+                         type: "PlainText",
                        }
-                     };
-      response.response.outputSpeech.text = outputSpeech;
+                     }
+                   };
+
+    // step 2: act on the intent
+    if (req.body.request.type === "LaunchRequest" ) {
+      // Having "Kin-vey m mbass" synthesize renders our product name most closely....
+      response.response.outputSpeech.text = "Hi "+username+", Kin-vey m mbass at your service";
       console.log(response);
       return res.status(200).send(response);
-    });
+    }
+
+    if (req.body.request.type === "IntentRequest" && req.body.request.intent.name === "GetBooks") {
+      var outputSpeech = "Hi there "+username+", the list of books is ";
+      Kinvey.DataStore.collection('books',Kinvey.DataStoreType.Network).find().subscribe(function onNext(books) {
+        console.log("FOUND BOOKS:");
+        books.forEach(function (book) {
+          console.log("- "+book.title);
+          outputSpeech += book.title+", ";
+        });
+        console.log("END OF LIST");
+        response.response.outputSpeech.text = outputSpeech;
+        console.log(response);
+        return res.status(200).send(response);
+      });
+    }
   });
 });
 
