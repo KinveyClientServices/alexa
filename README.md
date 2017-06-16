@@ -1,5 +1,7 @@
 # Reference Alexa Kinvey integration
 
+For a demo, see: https://www.youtube.com/watch?v=cEOI46b1ieE
+
 ## Setup:
 
 * Create Kinvey environment
