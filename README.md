@@ -12,3 +12,5 @@ For a demo, see: https://www.youtube.com/watch?v=cEOI46b1ieE
 * In Kinvey MIC config, choose your preferred Auth handler, and add redirect uris 
   as per Skill config direction ![MIC config](micconfig.png?raw=true "MIC config")
 
+.
+
